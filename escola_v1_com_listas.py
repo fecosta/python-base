@@ -39,3 +39,4 @@ for nome_atividade, atividade in atividades:
 	
 	print()
 	print("#" * 40)
+	# testes
