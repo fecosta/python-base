@@ -1,32 +1,35 @@
 #!/usr/bin/env python3
 
-email_tmpl = """
-   Olá, %(nome)s
+import sys
+import os
 
-   Tem interesse em comprar %(produto)s?
-   
-   Este produto é ótimo para resolver
+arguments = sys.argv[1:]
+if not arguments:
+    print("Informe o nome do arquivo de emails")
+    sys.exit(1)
 
-   %(texto)s
+filename = arguments[0]
+templatename = arguments[1] 
 
-   Clique agora em %(link)s
+path = os.curdir
+filepath = os.path.join(path, filename)
+templatepath = os.path.join(path, templatename)
 
-   Apenas %(quantidade)d disponiveis!
-
-   Preço promocional %(preco).2f
-"""
-
-clientes = ["Maria", "João", "Felipe"]
-
-
-for cliente in clientes:
-    print(email_tmpl
+for line in open(filepath):
+    name, email = line.split(",")
+    
+    # TODO: substituir por envio de email
+    print(f"Enviando email para: {email}")
+    print()
+    print(templatepath.read()
         % {
-            "nome": cliente,
+            "nome": name,
             "produto": "caneta azul",
             "texto": "Escrever muito bem",
             "link": "felipecosta.net",
             "quantidade": 1,
-            "preco": 50.5
+            "preco": 50.5,
+            # "email": email,
 	}
 )
+print("-" * 50)

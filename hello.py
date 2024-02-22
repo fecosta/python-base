@@ -58,3 +58,4 @@ msg = {
 }
 
 print(msg[current_language] * int(arguments["count"]))
+
